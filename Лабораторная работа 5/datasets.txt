@@ -1,0 +1,3 @@
+https://archive.ics.uci.edu/ml/datasets/Adult - https://www.kaggle.com/uciml/adult-census-income
+https://archive.ics.uci.edu/ml/datasets/Iris - https://www.kaggle.com/uciml/iris
+https://www.kaggle.com/uciml/mushroom-classification
