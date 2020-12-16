@@ -181,7 +181,7 @@
 	\begin{frame}
 		\frametitle{\insertsection}
 
-		\begin{block}{Гистограммы признаков sex и region}
+		\begin{block}{Диаграммы размаха признаков sex и region}
 			\begin{columns}[onlytextwidth,T]
 				\column{0.5\textwidth}
 				\begin{figure}[H]
@@ -204,7 +204,7 @@
 	\begin{frame}
 		\frametitle{\insertsection}
 
-		\begin{block}{Гистограммы признаков children и smoker}
+		\begin{block}{Диаграммы размаха признаков children и smoker}
 			\begin{columns}[onlytextwidth,T]
 				\column{0.5\textwidth}
 				\begin{figure}[H]
@@ -222,6 +222,12 @@
 				\end{figure}
 			\end{columns}
 		\end{block}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{\insertsection}
+		\justifying
+		С помощью диаграмм размаха удалось выяснить, что в между категориями имеются статистические различия.
 	\end{frame}
 
 	\begin{frame}
@@ -254,9 +260,63 @@
 		\end{columns}
 	\end{frame}
 
+	\section{Моделирование}
 	\begin{frame}
-		\frametitle{\null}
+		\frametitle{\insertsection}
+		\justifying
 
-		Спасибо за внимание!
+		В качестве базиса используется линейная регрессия.
+
+		Ввиду отсутствия мультиколлениарности и небольшого количества признаков применение таких
+		алгоритмов как LASSO, Ridge и Elastik-Net кажется нецелесообразным.
+
+		Можно использовать случайный лес, т. к. он хорошо умеет восстанавливать нелинейные зависимости,
+		но нужно помнить о том, что случайный лес не способен экстраполировать.
+
+		Для решения данной задачи также можно использовать метод опорного вектора регрессии.
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{\insertsection}
+		\justifying
+		В работе используются следующие алгоритмы:
+		\begin{itemize}
+			\item линейная регрессия;
+			\item опорный вектор регрессии;
+			\item случайный лес.
+		\end{itemize}
+
+		Для подбора наиболее оптимальных параметров используется GridSearchCV.
+
+		Для оценки алгоритмов используется Root Mean Square Error (RMSE) -- среднеквадратическое
+		отклонение ошибки. Данная оценка позволит оценить разброс ошибки.
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{\insertsection}
+		\justifying
+		В таблице ниже можно увидеть значения RMSE для используемых алгоритмов.
+
+		\begin{table}[H]
+			\caption{Оценка ошибки алгоритмов}
+			\begin{tabular}{|r|r|}
+				\hline
+				Алгоритм                 & RMSE    \\ \hline
+				Линейная регрессия       & $0,434$ \\ \hline
+				Опорный вектор регрессии & $0,443$ \\ \hline
+				Случайный лес            & $0,371$ \\ \hline
+			\end{tabular}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{\insertsection}
+		\justifying
+		
+		Мы видим, что у случайный леса наилучшее значение RMSE. Однако, нужно помнить что случайный лес
+		не способен экстраполировать.
+		
+		Можно использовать композицию алгоритмов. Применив композицию на основе голосования получаем
+		значение RMSE равное $0,396$.
 	\end{frame}
 \end{document}
